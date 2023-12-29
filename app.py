@@ -40,6 +40,11 @@ def welcome():
   return render_template('home.html',
                         projects=PROJECTS,)
 
+@app.route("/spaceport")
+def spaceport():  
+  return render_template('spaceport.html',
+                        projects=PROJECTS,)
+
 @app.route("/api/projects")
 def list_projects():
   return jsonify(PROJECTS)
