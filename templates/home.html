@@ -2,48 +2,26 @@
 <html>
   <head>
     <title>Spaceport</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
-      h1 {
-        font-size:40px;
-        font-family: Calibri;
-        font-weight: normal;
-        color: rgb(100, 100, 100);
-        text-align: center;
-      }
-
-      h2 {
-        font-family: Calibri;
-        font: size; 32px;
-        color: rgb(100, 100, 100);
-        text-align: center;
-      }
-
-      .bodytext {
-      font-family: Calibri;
-      color: rgb(80, 80, 80);
-      }
-
-      #container {
-        max-width: 720px;
-        margin: 0 auto 0 auto;
-        
-      }
-      
       #banner {
-      width: 100%;
-      height: 360px;
-      object-fit: cover;
+        height: 360px;
+        width: 100%;
+        object-fit: cover;
       }
+    </style>
     </style>
   </head>
   <body>
-    <div id="container">
-      <h1>Welcome to the Spaceport</h1>
+    <div class="container">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+      <h1 class="text-center mt-2 mb-4">Spaceport</h1>
       <p>Here you will find many useless things</p>
-      <img id="banner" src="https://spaceport.cwalljasper.repl.co/static/spacewalk.png">
-      <h2>About the Spaceport</h2>
-      <p class="bodytext">
-        Quia hic similique officiis in doloribus. Magnam delectus tenetur hic molestiae occaecati in laboriosam possimus. Ipsa temporibus in rerum hic qui omnis ut non. Beatae quia ad omnis.
+      <img class="img-fluid" id="banner" src="https://spaceport.cwalljasper.repl.co/static/spacewalk.png">
+      <h2 class="text-center mt-2 mb-4">About the Spaceport</h2>
+      <p class="lead">Quia hic similique officiis in doloribus. Magnam delectus tenetur hic molestiae occaecati in laboriosam possimus. Ipsa temporibus in rerum hic qui omnis ut non. Beatae quia ad omnis.
   
         Rerum ipsum perferendis est ea quia. Officia eum beatae repellat eum quis quam id. Sint dicta autem placeat rerum et totam. Facere deleniti quis nulla est necessitatibus ex praesentium hic.
   
@@ -53,11 +31,25 @@
   
         Maiores aut cupiditate consectetur est qui eos odio. Et et qui consequatur aut ducimus deleniti distinctio.
       </p>
-      <h2>Projects:</h2>
-      <p class="bodytext">TODO - show projects here</p>
-      <div style="text-align:center;">
-        <button>Requests</button>
-        <p class="bodytext">Copyright 2023, Walljasper</p>
+      <h2 class="text-center mt-2 mb-4">Active Projects:</h2>
+      <div>
+        {% for project in projects %}
+          {% if project.status != "Unapproved" %}
+            {% include 'projectitem.html' %}
+          {% endif %}
+        {% endfor%}
+      </div>
+      <h2 class="text-center mt-2 mb-4">Pending Projects:</h2>
+      <div>
+        {% for project in projects %}
+          {% if project.status == "Unapproved" %}
+            {% include 'projectitem.html' %}
+          {% endif %}
+        {% endfor%}
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary btn-lrg">Request</button>
+        <p class="text-center mt-4">Copyright 2023, Walljasper</p>
       </div>
     </div>
   </body>
